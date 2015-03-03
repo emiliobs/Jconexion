@@ -15,9 +15,9 @@ Line 23: modeDevelop = Terminal or GUI;
 Line 50: showSQL = true;
 Line 60: driver = MySQ, SQLSRV or Postgre.
 
-MySQL   => MySQL
-SQLSRV  => SQL Server
-Postgre => PostgreSQL
+MySQL   => MySQL<br>
+SQLSRV  => SQL Server<br>
+Postgre => PostgreSQL<br>
 
 <h3>4</h3>
 Run app
