@@ -13,7 +13,8 @@ import java.util.List;
  *
  * @author Nekszer
  */
-public class Multimap extends LinkedHashMap<String, List<String>> {
+public class Multimap<Key,Value> extends LinkedHashMap<String, List<String>> {
+    
     public void put(String key, String number) {
         List<String> current = get(key);
         if (current == null) {

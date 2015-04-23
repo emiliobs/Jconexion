@@ -90,6 +90,7 @@ public class IO {
     
     public static void combobox_setArray(Object[] o, JComboBox jc){
         jc.removeAllItems();
+        jc.addItem("Selecciona una opcion");
         for (int i = 0; i < o.length; i++) {
             jc.addItem(o[i].toString());
         }
@@ -104,6 +105,7 @@ public class IO {
      */
     public static void combobox_setArrayList(ArrayList l, JComboBox jc) {
         jc.removeAllItems();
+        jc.addItem("Selecciona una opcion");
         for (int i = 0; i < l.size(); i++) {
             String s1 = l.get(i).toString();
             if(l.get(i).toString().startsWith("[") && l.get(i).toString().endsWith("]")){
@@ -122,6 +124,7 @@ public class IO {
      */
     public static void combobox_setMatriz(ArrayList matriz, JComboBox jc) {
         jc.removeAllItems();
+        jc.addItem("Selecciona una opcion");
         for (Object matriz1 : matriz) {
             jc.addItem((String) ((ArrayList) matriz1).get(0));
         }
@@ -164,7 +167,7 @@ public class IO {
             Toolkit.getDefaultToolkit().beep();
         }
     }
-
+    
     /**
      * Este metodo valida texto alpha numerico en un jtextfield
      *
@@ -313,7 +316,11 @@ public class IO {
      * @since JConexionDB 1.1
      */
     public static void tabla_setNombreColumna(ArrayList<String> l, JTable jt) {
-        for (int i = 0; i < jt.getColumnCount(); i++) {
+        int size = l.size();
+        if(size == 0){
+            return;
+        }
+        for(int i = 0; i < 1; i++) {
             String nombre = l.get(i);
             jt.getColumn(jt.getColumnName(i)).setHeaderValue(nombre);
         }

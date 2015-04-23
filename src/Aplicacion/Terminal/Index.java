@@ -6,6 +6,8 @@ import System.Helper.Fichero;
 import System.Helper.Multimap;
 import System.DataBase.Core.Conexion;
 import System.DataBase.Core.DataBase;
+import System.Settings.MessageOption;
+import System.Settings.Options;
 import java.util.List;
 import java.util.Map;
 
@@ -41,9 +43,10 @@ public class Index {
     public void run() {
         //<editor-fold defaultstate="collapsed" desc="Su codigo inicia aqui - You'r code start to here">
         //</editor-fold>
+        MessageOption.success(100);
         DataBase db = new DataBase();
-        db.get("producto");
-        db.mostrarTerminalTable("producto");
+        db.get("cliente");
+        db.mostrarTerminalTable("cliente");
     }
     
 }

@@ -12,8 +12,13 @@ import javax.swing.table.DefaultTableModel;
 import System.DevAzt.GUI.FramTable;
 import System.DevAzt.GUI.InternalTable;
 import System.Helper.IO;
+import System.Helper.Multimap;
 import System.Settings.JConexion;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 //</editor-fold>
 
 /**
@@ -30,6 +35,12 @@ public abstract class Datos {
     /**
      * Objeto que almacena la matriz resultante de la consulta realizada en SQL
      */
+    
+    /**
+     * Objeto utilizado para manejar la matriz de una manera más eficiente
+     */
+    public Multimap Relacion = new Multimap();
+    
     protected ArrayList matriz = new ArrayList();
     /**
      * Default Model para el componente del JXTable
@@ -40,7 +51,7 @@ public abstract class Datos {
      * Objeto del JDialog FramTable el cual es utilizado para generar la tabla
      * con la consulta de SQL
      */
-    private final FramTable dialog = new FramTable(new javax.swing.JFrame(), true);
+    private FramTable dialog = null;
 
     /**
      * Objeto de InternalFrame InternalTable utilizado para generar la tabla de
@@ -110,7 +121,7 @@ public abstract class Datos {
             return null;
         }
     }
-
+    
     /**
      * Este metodo obtiene los datos de una tupla, y los regresa en un ArrayList
      *
@@ -159,6 +170,8 @@ public abstract class Datos {
      * @since JConexionDB 1.1
      */
     public void mostrarDialogTable(String titulo) {
+        dialog = new FramTable(new javax.swing.JFrame(), true);
+        dialog.setLocationRelativeTo(null);
         try {
             //obtenemos el numero de las filaz de la matriz
             int filas = this.matriz.size();
@@ -378,5 +391,18 @@ public abstract class Datos {
         }
         return s1;
     }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Override">
+    
+    public List<String> Select(String key){
+        ArrayList meta = (ArrayList) Relacion.keySet();
+        if(meta.contains(key)){
+            return (List<String>) Relacion.get(key);
+        }else{
+            return null;
+        }
+    }
+    
     //</editor-fold>
 }

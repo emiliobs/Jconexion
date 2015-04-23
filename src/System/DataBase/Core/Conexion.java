@@ -2,7 +2,9 @@ package System.DataBase.Core;
 
 import System.Settings.MessageOption;
 import System.DevAzt.IO.Archivo;
+import System.Helper.Multimap;
 import System.Settings.Options;
+import com.mysql.jdbc.CallableStatement;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,6 +32,11 @@ public abstract class Conexion extends Datos {
      */
     protected Connection miConexion;
 
+    /**
+     * Objeto el cual nos ayudara a ejecutar procedimientos almacenados
+     */
+    protected java.sql.CallableStatement procedure;
+    
     /**
      * Se encarga de ejecutar consultas SQL
      */
@@ -75,7 +82,7 @@ public abstract class Conexion extends Datos {
      * dbconfiguracion.dll
      */
     Archivo config = new Archivo();
-
+    
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Default Code - No eliminar">
@@ -213,16 +220,17 @@ public abstract class Conexion extends Datos {
                 //System.out.println(datos.getMetaData().getColumnName(i)); //mostramos el nombre de la columna
                 this.setTamaño(nombreColumnas.get(i - 1), i - 1);
             }
-            int tupla = 0;
+            int fila = 0;
             //insertamos los datos en nuestra tabla, contenida en la clase Datos
             while (this.datos.next()) {
                 for (int i = 1; i <= numColumnas; i++) {
                     Object obj = datos.getObject(i);
                     var = String.valueOf(obj);
-                    this.crearTabla(tupla, i - 1, obj);
+                    Relacion.put(nombreColumnas.get(i-1), var);
+                    this.crearTabla(fila, i - 1, obj);
                     this.setTamaño(var, i - 1);
                 }
-                tupla++;
+                fila++;
             }
         } catch (SQLException | NullPointerException ex) {
             /**     --      */
@@ -281,9 +289,7 @@ public abstract class Conexion extends Datos {
      * @since JConexionDB 1.2
      */
     protected boolean actualizar(String SQL) {
-
         boolean b1 = false;
-
         try {
             this.miConexion = (Connection) Conexion.getConnection();
             Statement statement;
@@ -297,10 +303,56 @@ public abstract class Conexion extends Datos {
             MessageOption.exit(0, false);
             b1 = false;
         }
-
         return b1;
     }
 
+    public ArrayList CallProcedure(String call){
+        try
+        {
+            this.miConexion = (Connection) Conexion.getConnection();
+            procedure = miConexion.prepareCall(call);
+            datos = procedure.executeQuery();
+        }
+        catch (SQLException e)
+        {
+            return null;
+        }
+        matriz.clear();
+        nombreColumnas.clear();
+        try {
+            //obtengo numero de columnas
+            int numColumnas = datos.getMetaData().getColumnCount();
+            String var = "";
+            this.initTamaño(numColumnas);
+            /**
+             * recorremos una fila de los datos, obteniendo el tipo de dato
+             */
+            for (int i = 1; i <= numColumnas; i++) {
+                nombreColumnas.add(datos.getMetaData().getColumnName(i));
+                //System.out.println(type.get(i-1)); //mostramos tipo de dato - descomentar para test
+                //System.out.println(datos.getMetaData().getColumnName(i)); //mostramos el nombre de la columna
+                this.setTamaño(nombreColumnas.get(i - 1), i - 1);
+            }
+            int fila = 0;
+            //insertamos los datos en nuestra tabla, contenida en la clase Datos
+            while (this.datos.next()) {
+                for (int i = 1; i <= numColumnas; i++) {
+                    Object obj = datos.getObject(i);
+                    var = String.valueOf(obj);
+                    Relacion.put(nombreColumnas.get(i-1), var);
+                    this.crearTabla(fila, i - 1, obj);
+                    this.setTamaño(var, i - 1);
+                }
+                fila++;
+            }
+        } catch (SQLException | NullPointerException ex) {
+            /**     --      */
+        } finally {
+            this.desconectar();
+        }
+        return matriz;
+    }
+    
     /**
      * Metodo que cierra las conexiones
      *
@@ -341,6 +393,8 @@ public abstract class Conexion extends Datos {
     }
 
     //</editor-fold>
+    
+    
     
     //<editor-fold defaultstate="collapsed" desc="Codigo para la Terminal">
     public static Integer[] tamaño = null;

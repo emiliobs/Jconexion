@@ -20,7 +20,7 @@ public class Options {
      * <br>
      * TERMINAL = UTilizando la consola
      */
-    public static final String modeDevelop = "Terminal";
+    public static final String modeDevelop = "GUI";
 
     /**
      * Define si los errores seran mostrados <br>
@@ -34,7 +34,7 @@ public class Options {
      * true = Se muestran mensajes <br>
      * false = No se muestran mensajes
      */
-    public static final boolean success = true;
+    public static final boolean success = false;
     
     //</editor-fold>
     
@@ -47,7 +47,7 @@ public class Options {
      * <br>
      * False = No mostrar en terminal el codigo SQL generado
      */
-    public static final boolean showSQL = false;
+    public static final boolean showSQL = true;
     
     /**
      * Este wrapper contiene el valor o el nombre del gestor de la base de datos
@@ -57,7 +57,7 @@ public class Options {
      * |- SQLSRV    => SQL Server
      * |- Postgre   => PostgreSQL
      */
-    public static final String driver = "Postgre";
+    public static final String driver = "MYSQL";
     
     //</editor-fold>
 }

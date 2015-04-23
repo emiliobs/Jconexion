@@ -613,7 +613,6 @@ public class DataBase extends Conexion {
         return valor;
     }
 
-    //<editor-fold desc="Min" defaultstate="collapsed">
     /**
      * Devuelve un string con el valor minimo obtenido de la consulta
      *
@@ -889,5 +888,10 @@ public class DataBase extends Conexion {
         return super.consulta(SQL);
     }
     //</editor-fold>
+    
+    @Override
+    public ArrayList CallProcedure(String procedure){
+        return super.CallProcedure(procedure);
+    }
 }
 //oiiiiieeeeeeeee
