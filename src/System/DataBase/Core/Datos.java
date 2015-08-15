@@ -39,7 +39,7 @@ public abstract class Datos {
     /**
      * Objeto utilizado para manejar la matriz de una manera más eficiente
      */
-    public Multimap Relacion = new Multimap();
+    protected Multimap Relacion = new Multimap();
     
     protected ArrayList matriz = new ArrayList();
     /**

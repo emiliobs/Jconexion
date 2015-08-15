@@ -105,7 +105,11 @@ public abstract class Conexion extends Datos {
         try {
             BD = s2.get(0);
             usuario = s2.get(1);
-            password = s2.get(2);
+            if(s2.size() > 2){
+                password = s2.get(2);
+            }else{
+                password = "";
+            }
         } catch (IndexOutOfBoundsException e) {
             config.borrarArchivo();
             MessageOption.exit(1, true);
@@ -393,8 +397,6 @@ public abstract class Conexion extends Datos {
     }
 
     //</editor-fold>
-    
-    
     
     //<editor-fold defaultstate="collapsed" desc="Codigo para la Terminal">
     public static Integer[] tamaño = null;

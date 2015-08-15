@@ -20,7 +20,7 @@ public class Options {
      * <br>
      * TERMINAL = UTilizando la consola
      */
-    public static final String modeDevelop = "GUI";
+    public static final String modeDevelop = "TERMINAL";
 
     /**
      * Define si los errores seran mostrados <br>
