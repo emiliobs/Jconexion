@@ -50,13 +50,11 @@ public class ORM<T> {
                 if (campo.toLowerCase().contains("id")) {
                     idattribvalue = value;
                     idattribname = campo;
-                } else {
-                    data.put(campo, value);
                 }
-                if (value.equals("null")) {
+                if(value.equals("null")){
                     value = null;
                 }
-                System.out.println(value);
+                data.put(campo, value);
             } catch (Throwable ex) {
                 if (Options.errors) {
                     System.err.println("No es posible crear el SQL para este objeto");
