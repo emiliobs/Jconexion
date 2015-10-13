@@ -14,6 +14,7 @@ import System.DevAzt.GUI.InternalTable;
 import System.Helper.IO;
 import System.Helper.Multimap;
 import System.Settings.JConexion;
+import java.security.KeyException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -132,7 +133,9 @@ public abstract class Datos {
      * @since JConexionDB 1.0
      */
     public ArrayList getTupla(int tupla) {
+        Map<String,String> data = new LinkedHashMap();
         ArrayList al = new ArrayList();
+        
         if (tupla < this.sizeTuplas()) {
             for (int j = 0; j < ((ArrayList) this.matriz.get(tupla)).size(); j++) {
                 al.add(((ArrayList) this.matriz.get(tupla)).get(j));
@@ -142,6 +145,36 @@ public abstract class Datos {
             MessageOption.exit(6, false);
             return null;
         }
+    }
+    
+    /**
+     * Método diseñado para devolver un map con los datos correspondientes a la fila [index]
+     * @param index
+     * @return Map string,string
+     * @throws java.security.KeyException
+     * @since 1.4.2.36
+     */
+    public Map<String,String> row(int index) throws IndexOutOfBoundsException{
+        return this.Relacion.row(index);
+    }
+    
+    /**
+     * Método diseñado para devolver la row por defecto [0] en consultas que devuelven una sola tupla
+     * @return Map string,string
+     * @since 1.4.2.36
+     */
+    public Map<String,String> row() throws IndexOutOfBoundsException{
+        return this.Relacion.row(0);
+    }
+    
+    /**
+     * Este método devuelve todos los valores disponibles para una columna [columname param]
+     * @param columname nombre de la columna a obtener
+     * @return lista de valores
+     * @throws KeyException el nombre de la columna no es correcto o no existe 
+     */
+    public List<String> column(String columname) throws KeyException{
+        return this.Relacion.column(columname);
     }
     //</editor-fold>
 

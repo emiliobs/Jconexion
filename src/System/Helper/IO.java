@@ -6,13 +6,10 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JInternalFrame;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 /**
  * Esta clase fue desarrollada para tener codigo funcional para cualquier caso

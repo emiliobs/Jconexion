@@ -40,12 +40,12 @@ public class ActiveRecord extends Conexion {
         }
     }
 
-    public <T> ArrayList<T> Get(Class<T> clazz) {
+    public <T> ArrayList<T> get(Class<T> clazz) {
         String SQL = "SELECT * FROM " + clazz.getSimpleName().toLowerCase();
         return this.excecuteQuery(SQL, clazz);
     }
 
-    public <T> ArrayList<T> Get(Class<T> clazz, int start, int limit) {
+    public <T> ArrayList<T> get(Class<T> clazz, int start, int limit) {
         String SQL = "SELECT * FROM " + clazz.getSimpleName().toLowerCase() + " LIMIT " + start + "," + limit;
         return this.excecuteQuery(SQL, clazz);
     }

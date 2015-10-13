@@ -44,9 +44,6 @@ public class Index {
         //<editor-fold defaultstate="collapsed" desc="Su codigo inicia aqui - You'r code start to here">
         //</editor-fold>
         MessageOption.success(100);
-        DataBase db = new DataBase();
-        db.get("cliente");
-        db.mostrarTerminalTable("cliente");
     }
     
 }
