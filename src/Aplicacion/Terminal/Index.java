@@ -2,14 +2,9 @@ package Aplicacion.Terminal;
 
 import java.sql.Connection;
 import System.DevAzt.IO.Archivo;
-import System.Helper.Fichero;
-import System.Helper.Multimap;
 import System.DataBase.Core.Conexion;
 import System.DataBase.Core.DataBase;
 import System.Settings.MessageOption;
-import System.Settings.Options;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Clase desarrollada para manejar el controlador / vista principal para la

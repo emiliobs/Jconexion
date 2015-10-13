@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import System.DevAzt.IO.Archivo;
 import System.DataBase.Core.Conexion;
 import System.DataBase.Core.DataBase;
-import java.security.KeyException;
 
 /**
  * Frame secundario del API, pero principal del sistema que se piensa desarrollar
@@ -14,8 +13,8 @@ import java.security.KeyException;
  * @version 1.3.0
  * @since JConexionDB 1.0
  */
-public class Index extends javax.swing.JFrame {
-
+public class Index extends javax.swing.JFrame{
+    
     /**
      * Este constructor contiene mucha informacion que no debe ser modficada
      * contiene las propiedades de la ventana [modificables]
@@ -59,7 +58,7 @@ public class Index extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
@@ -76,6 +75,7 @@ public class Index extends javax.swing.JFrame {
         }
     }
     //</editor-fold>
+
 }
 
 

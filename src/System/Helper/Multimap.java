@@ -28,17 +28,23 @@ public class Multimap<Key,Value> extends LinkedHashMap<String, List<String>> {
     }
     
     public Map<String,String> row(int index) throws IndexOutOfBoundsException{
+        boolean found = false;
         Map<String,String> data = new LinkedHashMap<>();
         for (Entry<String, List<String>> entrySet : this.entrySet()) {
             String key = entrySet.getKey();
             List<String> value = entrySet.getValue();
             for (int i = 0; i < value.size(); i++) {
                 if(i == index){
+                    found = true;
                     data.put(key,value.get(i));
                 }
             }
         }
-        throw new IndexOutOfBoundsException("El index no existe");
+        if(found){
+            return data;
+        }else{
+            throw new IndexOutOfBoundsException("El index no existe");
+        }
     }
     
     /**

@@ -20,7 +20,7 @@ public class Options {
      * <br>
      * TERMINAL = UTilizando la consola
      */
-    public static final String modeDevelop = "GUI";
+    public static final String modeDevelop = "TERMINAL";
 
     /**
      * Define si los errores seran mostrados <br>
@@ -34,7 +34,7 @@ public class Options {
      * true = Se muestran mensajes <br>
      * false = No se muestran mensajes
      */
-    public static final boolean success = false;
+    public static final boolean success = true;
     
     //</editor-fold>
     

@@ -9,7 +9,7 @@ import java.util.Map;
  * de esta clase es opcional, el metodo que si es necesario para hacer consultas
  * se llama excecuteQuery();
  * @author nekszer
- * @version 1.4.2
+ * @version 1.4.3
  * @since 1.3.0
  */
 public class DataBase extends Conexion {
@@ -431,6 +431,17 @@ public class DataBase extends Conexion {
     //</editor-fold>
     
     //<editor-fold desc="Insercion" defaultstate="collapsed">
+   
+    /**
+     * Este método devuelve el ultimo id de insersion realizado
+     * @return int
+     */
+    public int lastInsertId() {
+        this.excecuteQuery("SELECT last_insert_id() as lastid");
+        String dato = this.getDato(0, 0);
+        return Integer.parseInt(dato);
+    }
+    
     /**
      * Este metodo sirve para ingresar valores en una tabla, para poder agregar
      * los valores, se utiliza un Map[key,value]
