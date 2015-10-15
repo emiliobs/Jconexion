@@ -1,8 +1,13 @@
 package System.Settings;
 
 import Aplicacion.Terminal.Index;
+import System.DataBase.Core.Conexion;
 import System.DevAzt.IO.Archivo;
 import System.DataBase.Core.ConfiguracionCMD;
+import System.DataBase.Core.DataBase;
+import System.MVC.Core.Controller;
+import System.MVC.Core.Frame;
+import java.sql.Connection;
 
 /**
  * Clase principal de la Appi, es recomendable trabajar sobre el archivo de
@@ -21,10 +26,10 @@ public class Terminal {
         config.crearDir();
 
         if (config.fileExist()) {
-            Index index = new Index();
-            if (index.validacion()) {
-                index.run();
-                System.exit(0);
+            if (validacion()) {
+                Controller c = new Controller();
+                c.setFrame(new Frame());
+                c.getFrame().startController(new Index(), null);
             }
         } else {
             configuracion();
@@ -37,4 +42,15 @@ public class Terminal {
         ConfiguracionCMD c = new ConfiguracionCMD();
     }
 
+    public boolean validacion(){
+        Archivo config = new Archivo();
+        DataBase d = new DataBase();
+        Connection conection = DataBase.getConnection();
+        if (Conexion.error) {
+            config.borrarArchivo();
+            return false;
+        }
+        return true;
+    } 
+    
 }

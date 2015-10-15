@@ -1,10 +1,10 @@
 package Aplicacion.Terminal;
 
-import java.sql.Connection;
-import System.DevAzt.IO.Archivo;
-import System.DataBase.Core.Conexion;
-import System.DataBase.Core.DataBase;
+import System.MVC.Core.Controller;
+import System.MVC.Core.IController;
+import System.MVC.Core.IView;
 import System.Settings.MessageOption;
+import javax.swing.JComponent;
 
 /**
  * Clase desarrollada para manejar el controlador / vista principal para la
@@ -16,29 +16,18 @@ import System.Settings.MessageOption;
  * @version 1.3.0
  * @since 1.3.0
  */
-public class Index {
-
-    //<editor-fold defaultstate="collapsed" desc=" No elimine este codigo - You don't delete this code">
-    public boolean validacion() {
-        Archivo config = new Archivo();
-        DataBase d = new DataBase();
-        Connection conection = DataBase.getConnection();
-        if (Conexion.error) {
-            config.borrarArchivo();
-            return false;
-        }
-        return true;
-    }
-
-    //</editor-fold>
-    /**
-     * Metodo a ejecutar cuando la aplicacion se inicia con la clase
-     * Terminal
-     */
-    public void run() {
+public class Index extends Controller implements IController{
+    
+    @Override
+    public void start(Object o) {
         //<editor-fold defaultstate="collapsed" desc="Su codigo inicia aqui - You'r code start to here">
         //</editor-fold>
         MessageOption.success(100);
+    }
+
+    @Override
+    public void onClickFromUI(int actionId, IView view, JComponent... componentes) {
+        
     }
     
 }
