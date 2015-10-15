@@ -2,13 +2,9 @@
 package Aplicacion.Vistas;
 
 import Aplicacion.Controller.IndexController;
-import java.sql.Connection;
-import javax.swing.JOptionPane;
-import System.DevAzt.IO.Archivo;
-import System.DataBase.Core.Conexion;
-import System.DataBase.Core.DataBase;
 import System.MVC.Core.IView;
 import System.MVC.Core.View;
+import javax.swing.JOptionPane;
 
 /**
  * Frame secundario del API, pero principal del sistema que se piensa desarrollar
@@ -79,7 +75,15 @@ public class Index extends View implements IView{
 
     @Override
     public void onControllerResponse(int action, Object object) {
-        
+        switch (action) {
+            // recibimos la informacion desde el controllador
+            case IndexController.btnExitApp:
+                String data = (String) object; // parceamos al objeto original
+                JOptionPane.showMessageDialog(this, data); // imprimimos la informacion 
+                break;
+            default:
+                System.out.println("No hay un caso para actionid");
+        }
     }
     
 }

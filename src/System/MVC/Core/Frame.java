@@ -46,15 +46,23 @@ public class Frame {
         this.currentFrame = currentFrame;
     }
 
+    /**
+     * Devuelve la vista actual
+     * @return 
+     */
+    public IView getView(){
+        return (IView) getCurrentView();
+    }
+    
     private JFrame getCurrentFrame() {
         return currentFrame;
     }
 
-    public View getCurrentView() {
+    private View getCurrentView() {
         return currentView;
     }
 
-    public void setCurrentView(View currentView) {
+    private void setCurrentView(View currentView) {
         this.currentView = currentView;
     }
 

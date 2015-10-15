@@ -29,9 +29,11 @@ public class IndexController extends Controller implements IController{
         switch (actionId) {
             // Hacemos uso del MVC y capturamos el evento desde la vista
             case IndexController.btnExitApp:
+                // enviamos informacion a la vista
+                getFrame().getView().onControllerResponse(actionId, "La aplicacion terminara");
+                // terminamos la app
                 System.exit(0);
                 break;
         }
     }
-
 }
